@@ -4,6 +4,9 @@ KnC SPI Protocol specification
 The protocol is a full duplex SPI protocol. Response status header is coming
 immediately at first clocked bit.
 
+Request and response formats are aligned in such way that there is three
+response packets transmitted per request (384 bits / 96 bits = 3)
+
 Requests
 --------
 
@@ -26,7 +29,7 @@ CMD 	Command
 
 0	Reserved bit. Always 0.
 
-QUEUE	Queue ID
+QUEUE	Queue ID. Not yet implemented. Should always be sent as 0.
 
 ID	Request ID
 
@@ -42,10 +45,10 @@ Responses always starts with 64 bit header, followed by 96 bit responses
 
 Header contents
 
-	  31               1          16         16
-    +----------------+----------+----------+-----------------+
-    | reserved flags | Overflow | reserved | work slots free |
-    +----------------+----------+----------+-----------------+
+	  31               1          16         16               32
+    +----------------+----------+----------+-----------------+------------+
+    | reserved flags | Overflow | reserved | work slots free | reserved   |
+    +----------------+----------+----------+-----------------+------------+
 
 
 - Overflow error indication bit. Some responses have been lost if this bit
