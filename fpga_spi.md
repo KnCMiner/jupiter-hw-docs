@@ -4,8 +4,8 @@ KnC SPI Protocol specification
 The protocol is a full duplex SPI protocol. Response status header is coming
 immediately at first clocked bit.
 
-Request and response formats are aligned in such way that there is three
-response packets transmitted per request (384 bits / 96 bits = 3)
+Request and response formats are aligned in such way that there is four
+response packets transmitted per request (384 bits / 96 bits = 4)
 
 Requests
 --------
@@ -41,7 +41,7 @@ to be requrned in status responses.
 Responses
 ---------
 
-Responses always starts with 64 bit header, followed by 96 bit responses
+Responses always starts with 96 bit header, followed by 96 bit responses
 
 Header contents
 
